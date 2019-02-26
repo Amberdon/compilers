@@ -1,10 +1,10 @@
-package ru.leidenn;
+package ru.leidenn.stateMachine;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import static ru.leidenn.Lexeme.Type.*;
+import static ru.leidenn.stateMachine.Lexeme.Type.*;
 
 import java.io.IOException;
 import java.io.StringReader;

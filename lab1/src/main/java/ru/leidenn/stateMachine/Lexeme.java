@@ -1,4 +1,4 @@
-package ru.leidenn;
+package ru.leidenn.stateMachine;
 
 public class Lexeme {
     private Type type;

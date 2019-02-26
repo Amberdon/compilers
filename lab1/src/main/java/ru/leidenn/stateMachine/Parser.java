@@ -1,4 +1,4 @@
-package ru.leidenn;
+package ru.leidenn.stateMachine;
 
 import java.io.IOException;
 import java.text.ParseException;

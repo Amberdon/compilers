@@ -1,4 +1,4 @@
-package ru.leidenn;
+package ru.leidenn.stateMachine;
 
 import org.junit.jupiter.api.Test;
 
