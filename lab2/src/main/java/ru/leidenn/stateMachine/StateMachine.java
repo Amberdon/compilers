@@ -13,14 +13,13 @@ class StateMachine {
                     .filter(s -> !s.isEmpty())
                     .map(Integer::parseInt)
                     .forEach(finalStates::add);
-            System.out.println(finalStates);
-            Map<Integer , Map<Character, Integer>> transitions = new HashMap<>();
+            Map<Integer, Map<Character, Integer>> transitions = new HashMap<>();
             while (reader.hasNextLine()) {
                 String[] sp = reader.nextLine().split(" ");
                 Integer fromState = Integer.parseInt(sp[0]);
                 Character sym = sp[1].charAt(0);
                 Integer toState = Integer.parseInt(sp[2]);
-                if(!transitions.containsKey(fromState)) {
+                if (!transitions.containsKey(fromState)) {
                     transitions.put(fromState, new HashMap<>()); // WHAT
                 }
                 transitions.get(fromState).put(sym, toState);
@@ -29,6 +28,20 @@ class StateMachine {
             transitionFunction = new TransitionFunction(transitions);
         } catch (NumberFormatException e) {
             // TODO throw my exc
+        } catch (TransitionFunctionException.NotDeterministicTransitionFunction e) {
+            e.printStackTrace();
         }
+    }
+
+    boolean check(String str) {
+        Integer currentState = 1;
+        for (Character c : str.toCharArray()) {
+            try {
+                currentState = transitionFunction.step(currentState, c);
+            } catch (TransitionFunctionException.NoSuchTransition e) {
+                return false;
+            }
+        }
+        return finalStates.contains(currentState);
     }
 }
